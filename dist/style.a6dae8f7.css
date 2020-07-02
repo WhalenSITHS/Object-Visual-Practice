@@ -5,8 +5,7 @@ body {
   margin: 0;
   font-size: 62.5%;
 }
-body {
-}
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -16,9 +15,11 @@ body {
   background-color: white;
   flex-wrap: wrap;
 }
+
 .item-value {
   font-size: 3rem;
 }
+
 .item-list {
   display: flex;
   flex-direction: column;
@@ -31,14 +32,9 @@ body {
   list-style: none;
   background-color: #333;
 }
-.item-name {
-}
-.item-price {
-}
-.item-vegetarian {
-}
-.item-in-stock {
-}
+
 .item-image {
   height: 20rem;
 }
+
+/*# sourceMappingURL=/style.a6dae8f7.css.map */
