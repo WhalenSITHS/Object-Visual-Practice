@@ -12,12 +12,13 @@ body {
   justify-content: space-around;
   align-items: center;
   margin: 3rem auto;
-  width: 80vw;
+  width: 90vw;
   background-color: white;
   flex-wrap: wrap;
 }
 .item-value {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  margin: 1rem auto;
 }
 .item-list {
   display: flex;
@@ -25,11 +26,12 @@ body {
   align-items: center;
   justify-content: space-around;
   color: white;
-  padding: 1rem;
+  padding: 2rem 1rem;
   margin: 1rem auto;
   text-transform: uppercase;
   list-style: none;
   background-color: #333;
+  width: 22vw;
 }
 .item-name {
 }
@@ -40,5 +42,5 @@ body {
 .item-in-stock {
 }
 .item-image {
-  height: 20rem;
+  height: 18rem;
 }
