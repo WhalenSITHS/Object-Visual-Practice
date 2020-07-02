@@ -179,15 +179,26 @@ var init = function init() {
   var displayItems = menu.forEach(function (item) {
     return DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
   });
+  DOMSelectors.fullMenuButton.addEventListener("click", function (e) {
+    menu.forEach(function (item) {
+      DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
+    });
+  });
+  DOMSelectors.resetButton.addEventListener("click", function (e) {
+    DOMSelectors.displayContainer.innerHTML = "";
+    console.log("clear content works");
+  });
+  DOMSelectors.vegetarianButton.addEventListener("click", function (e) {
+    vegetarianOptions.forEach(function (item) {
+      DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
+    });
+  });
 };
-/* const clearContent = function () {
-  DOMSelectors.displayContainer.innerHTML = "";
-  console.log("clear content works");
-}; */
 
-
-DOMSelectors.resetButton.addEventListener("click", clearContent());
-/* init(); */
+init();
+var vegetarianOptions = menu.filter(function (item) {
+  return item.vegetarian === true;
+});
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -216,7 +227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42463" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63479" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
