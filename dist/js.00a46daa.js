@@ -119,7 +119,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"js/index.js":[function(require,module,exports) {
 var DOMSelectors = {
-  displayContainer: document.querySelector(".container")
+  displayContainer: document.querySelector(".container"),
+  resetButton: document.querySelector(".reset-btn"),
+  fullMenuButton: document.querySelector(".full-btn"),
+  inStockButton: document.querySelector(".stock-btn"),
+  vegetarianButton: document.querySelector(".veg-btn")
 };
 var menu = [{
   name: "Pizza Slice",
@@ -176,12 +180,14 @@ var init = function init() {
     return DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
   });
 };
-
-var clearContent = function clearContent() {
+/* const clearContent = function () {
   DOMSelectors.displayContainer.innerHTML = "";
-};
+  console.log("clear content works");
+}; */
 
-init();
+
+DOMSelectors.resetButton.addEventListener("click", clearContent());
+/* init(); */
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -210,7 +216,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46471" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42463" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

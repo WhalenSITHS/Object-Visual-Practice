@@ -1,5 +1,9 @@
 const DOMSelectors = {
   displayContainer: document.querySelector(".container"),
+  resetButton: document.querySelector(".reset-btn"),
+  fullMenuButton: document.querySelector(".full-btn"),
+  inStockButton: document.querySelector(".stock-btn"),
+  vegetarianButton: document.querySelector(".veg-btn"),
 };
 const menu = [
   {
@@ -88,7 +92,10 @@ const init = function () {
     )
   );
 };
-const clearContent = function () {
+/* const clearContent = function () {
   DOMSelectors.displayContainer.innerHTML = "";
-};
-init();
+  console.log("clear content works");
+}; */
+
+DOMSelectors.resetButton.addEventListener("click", clearContent());
+/* init(); */

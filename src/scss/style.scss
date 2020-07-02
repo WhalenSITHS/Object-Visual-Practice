@@ -44,3 +44,31 @@ body {
 .item-image {
   height: 18rem;
 }
+.btns {
+  display: flex;
+  width: 80vw;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+.btn {
+  border-radius: 2rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  background-color: #333;
+  color: white;
+  transition: all 0.3s;
+  border: none;
+  width: 20rem;
+  height: 8rem;
+  font-size: 2.2rem;
+}
+.btn:hover {
+  background-color: transparent;
+  border: 1px solid #333;
+  color: #333;
+}
+.btn:active {
+  transform: scale(1.1) translateY(-1px);
+}
