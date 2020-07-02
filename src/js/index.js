@@ -1,3 +1,6 @@
+const DOMSelectors = {
+  displayContainer: document.querySelector(".container"),
+};
 const menu = [
   {
     name: "Pizza Slice",
@@ -66,9 +69,8 @@ const menu = [
 ];
 
 const init = function () {
-  const displayContainer = document.querySelector(".container");
   const displayItems = menu.forEach((item) =>
-    displayContainer.insertAdjacentHTML(
+    DOMSelectors.displayContainer.insertAdjacentHTML(
       "afterbegin",
       `<ul class="item-list">
       <li class="item-name item-value">${item.name}</li>
@@ -86,5 +88,5 @@ const init = function () {
     )
   );
 };
-
+/* const clearContent = function () {}; */
 init();
