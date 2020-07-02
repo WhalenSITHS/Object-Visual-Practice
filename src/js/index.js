@@ -88,5 +88,7 @@ const init = function () {
     )
   );
 };
-/* const clearContent = function () {}; */
+const clearContent = function () {
+  DOMSelectors.displayContainer.innerHTML = "";
+};
 init();
