@@ -117,7 +117,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/index.js":[function(require,module,exports) {
+})({"js/Dom.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DOMSelectors = void 0;
 var DOMSelectors = {
   displayContainer: document.querySelector(".container"),
   resetButton: document.querySelector(".reset-btn"),
@@ -125,6 +131,14 @@ var DOMSelectors = {
   inStockButton: document.querySelector(".stock-btn"),
   vegetarianButton: document.querySelector(".veg-btn")
 };
+exports.DOMSelectors = DOMSelectors;
+},{}],"js/Menu.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.menu = exports.inStockItems = exports.vegetarianOptions = void 0;
 var menu = [{
   name: "Pizza Slice",
   vegetarian: true,
@@ -174,43 +188,59 @@ var menu = [{
   img: "https://images.unsplash.com/photo-1566454419290-57a64afe30ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80",
   inStock: true
 }];
+exports.menu = menu;
+var vegetarianOptions = menu.filter(function (item) {
+  return item.vegetarian === true;
+});
+exports.vegetarianOptions = vegetarianOptions;
+var inStockItems = menu.filter(function (item) {
+  return item.inStock === true;
+});
+exports.inStockItems = inStockItems;
+},{}],"js/index.js":[function(require,module,exports) {
+"use strict";
+
+var _Dom = require("./Dom");
+
+var _Menu = require("./Menu");
 
 var init = function init() {
-  var displayItems = menu.forEach(function (item) {
-    return DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
+  var displayItems = _Menu.menu.forEach(function (item) {
+    return _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
   });
-  DOMSelectors.fullMenuButton.addEventListener("click", function (e) {
-    DOMSelectors.displayContainer.innerHTML = "";
-    menu.forEach(function (item) {
-      DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
+
+  _Dom.DOMSelectors.fullMenuButton.addEventListener("click", function (e) {
+    _Dom.DOMSelectors.displayContainer.innerHTML = "";
+
+    _Menu.menu.forEach(function (item) {
+      _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
     });
   });
-  DOMSelectors.resetButton.addEventListener("click", function (e) {
-    DOMSelectors.displayContainer.innerHTML = "";
+
+  _Dom.DOMSelectors.resetButton.addEventListener("click", function (e) {
+    _Dom.DOMSelectors.displayContainer.innerHTML = "";
     console.log("clear content works");
   });
-  DOMSelectors.vegetarianButton.addEventListener("click", function (e) {
-    DOMSelectors.displayContainer.innerHTML = "";
-    vegetarianOptions.forEach(function (item) {
-      DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
+
+  _Dom.DOMSelectors.vegetarianButton.addEventListener("click", function (e) {
+    _Dom.DOMSelectors.displayContainer.innerHTML = "";
+
+    _Menu.vegetarianOptions.forEach(function (item) {
+      _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
     });
   });
-  DOMSelectors.inStockButton.addEventListener("click", function (e) {
-    DOMSelectors.displayContainer.innerHTML = "";
-    inStockItems.forEach(function (item) {
-      DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
+
+  _Dom.DOMSelectors.inStockButton.addEventListener("click", function (e) {
+    _Dom.DOMSelectors.displayContainer.innerHTML = "";
+
+    _Menu.inStockItems.forEach(function (item) {
+      _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
     });
   });
 };
 
 init();
-var vegetarianOptions = menu.filter(function (item) {
-  return item.vegetarian === true;
-});
-var inStockItems = menu.filter(function (item) {
-  return item.inStock === true;
-});
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./Dom":"js/Dom.js","./Menu":"js/Menu.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -238,7 +268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44651" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34649" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
