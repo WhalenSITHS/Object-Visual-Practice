@@ -66,7 +66,7 @@ const menu = [
 ];
 const vegetarianOptions = menu.filter((item) => item.vegetarian === true);
 const inStockItems = menu.filter((item) => item.inStock === true);
-const saleMenu = menu.map((item) => ({
+const saleMenu = inStockItems.map((item) => ({
   name: item.name,
   price: item.price / 2,
   vegetarian: item.vegetarian,

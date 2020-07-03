@@ -198,7 +198,7 @@ var inStockItems = menu.filter(function (item) {
   return item.inStock === true;
 });
 exports.inStockItems = inStockItems;
-var saleMenu = menu.map(function (item) {
+var saleMenu = inStockItems.map(function (item) {
   return {
     name: item.name,
     price: item.price / 2,
@@ -215,9 +215,10 @@ var _Dom = require("./Dom");
 
 var _Menu = require("./Menu");
 
-console.log(_Menu.saleMenu);
+var date = new Date();
+var day = date.getDay();
 
-var init = function init() {
+var normalDay = function normalDay() {
   var displayItems = _Menu.menu.forEach(function (item) {
     return _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
   });
@@ -242,22 +243,44 @@ var init = function init() {
       _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
     });
   });
+};
 
-  _Dom.DOMSelectors.inStockButton.addEventListener("click", function (e) {
-    _Dom.DOMSelectors.displayContainer.innerHTML = "";
-
-    _Menu.inStockItems.forEach(function (item) {
-      _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
-    });
+var saleDay = function saleDay() {
+  var displayItems = _Menu.saleMenu.forEach(function (item) {
+    return _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
   });
+};
 
-  _Dom.DOMSelectors.saleButton.addEventListener("click", function (e) {
-    _Dom.DOMSelectors.displayContainer.innerHTML = "";
+var init = function init() {
+  switch (day) {
+    case 1:
+      normalDay();
+      break;
 
-    _Menu.saleMenu.forEach(function (item) {
-      _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
-    });
-  });
+    case 2:
+      normalDay();
+      break;
+
+    case 3:
+      normalDay();
+      break;
+
+    case 4:
+      normalDay();
+      break;
+
+    case 5:
+      saleDay();
+      break;
+
+    case 6:
+      saleDay();
+      break;
+
+    case 7:
+      saleDay();
+      break;
+  }
 };
 
 init();
@@ -289,7 +312,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41837" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38421" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

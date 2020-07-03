@@ -1,7 +1,9 @@
 import { DOMSelectors } from "./Dom";
 import { menu, inStockItems, vegetarianOptions, saleMenu } from "./Menu";
-console.log(saleMenu);
-const init = function () {
+const date = new Date();
+const day = date.getDay();
+
+const normalDay = function () {
   const displayItems = menu.forEach((item) =>
     DOMSelectors.displayContainer.insertAdjacentHTML(
       "afterbegin",
@@ -66,48 +68,51 @@ const init = function () {
       );
     });
   });
-  DOMSelectors.inStockButton.addEventListener("click", function (e) {
-    DOMSelectors.displayContainer.innerHTML = "";
-    inStockItems.forEach((item) => {
-      DOMSelectors.displayContainer.insertAdjacentHTML(
-        "afterbegin",
-        `<ul class="item-list">
-      <li class="item-name item-value">${item.name}</li>
-      <li class="item-price item-value"> $${item.price}</li>
-      <li class="item-vegetarian item-value">Vegetarian: ${item.vegetarian}</li>
-      <li class="item-image">
-        <img
-          class="item-image"
-          src="${item.img}"
-          alt=""
-        />
-      </li>
-      <li class="item-in-stock item-value">In Stock: ${item.inStock}</li>
-    </ul>`
-      );
-    });
-  });
-  DOMSelectors.saleButton.addEventListener("click", function (e) {
-    DOMSelectors.displayContainer.innerHTML = "";
-    saleMenu.forEach((item) => {
-      DOMSelectors.displayContainer.insertAdjacentHTML(
-        "afterbegin",
-        `<ul class="item-list">
-      <li class="item-name item-value">${item.name}</li>
-      <li class="item-price item-value"> $${item.price}</li>
-      <li class="item-vegetarian item-value">Vegetarian: ${item.vegetarian}</li>
-      <li class="item-image">
-        <img
-          class="item-image"
-          src="${item.img}"
-          alt=""
-        />
-      </li>
-      <li class="item-in-stock item-value">In Stock: ${item.inStock}</li>
-    </ul>`
-      );
-    });
-  });
 };
 
+const saleDay = function () {
+  const displayItems = saleMenu.forEach((item) =>
+    DOMSelectors.displayContainer.insertAdjacentHTML(
+      "afterbegin",
+      `<ul class="item-list">
+      <li class="item-name item-value">${item.name}</li>
+      <li class="item-price item-value"> $${item.price}</li>
+      <li class="item-vegetarian item-value">Vegetarian: ${item.vegetarian}</li>
+      <li class="item-image">
+        <img
+          class="item-image"
+          src="${item.img}"
+          alt=""
+        />
+      </li>
+      <li class="item-in-stock item-value">In Stock: ${item.inStock}</li>
+    </ul>`
+    )
+  );
+};
+const init = function () {
+  switch (day) {
+    case 1:
+      normalDay();
+      break;
+    case 2:
+      normalDay();
+      break;
+    case 3:
+      normalDay();
+      break;
+    case 4:
+      normalDay();
+      break;
+    case 5:
+      saleDay();
+      break;
+    case 6:
+      saleDay();
+      break;
+    case 7:
+      saleDay();
+      break;
+  }
+};
 init();
