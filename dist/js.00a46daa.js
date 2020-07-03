@@ -129,7 +129,8 @@ var DOMSelectors = {
   resetButton: document.querySelector(".reset-btn"),
   fullMenuButton: document.querySelector(".full-btn"),
   inStockButton: document.querySelector(".stock-btn"),
-  vegetarianButton: document.querySelector(".veg-btn")
+  vegetarianButton: document.querySelector(".veg-btn"),
+  saleButton: document.querySelector(".sale-btn")
 };
 exports.DOMSelectors = DOMSelectors;
 },{}],"js/Menu.js":[function(require,module,exports) {
@@ -138,7 +139,7 @@ exports.DOMSelectors = DOMSelectors;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.menu = exports.inStockItems = exports.vegetarianOptions = void 0;
+exports.saleMenu = exports.menu = exports.inStockItems = exports.vegetarianOptions = void 0;
 var menu = [{
   name: "Pizza Slice",
   vegetarian: true,
@@ -197,12 +198,24 @@ var inStockItems = menu.filter(function (item) {
   return item.inStock === true;
 });
 exports.inStockItems = inStockItems;
+var saleMenu = menu.map(function (item) {
+  return {
+    name: item.name,
+    price: item.price / 2,
+    vegetarian: item.vegetarian,
+    img: item.img,
+    inStock: item.inStock
+  };
+});
+exports.saleMenu = saleMenu;
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _Dom = require("./Dom");
 
 var _Menu = require("./Menu");
+
+console.log(_Menu.saleMenu);
 
 var init = function init() {
   var displayItems = _Menu.menu.forEach(function (item) {
@@ -237,6 +250,14 @@ var init = function init() {
       _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
     });
   });
+
+  _Dom.DOMSelectors.saleButton.addEventListener("click", function (e) {
+    _Dom.DOMSelectors.displayContainer.innerHTML = "";
+
+    _Menu.saleMenu.forEach(function (item) {
+      _Dom.DOMSelectors.displayContainer.insertAdjacentHTML("afterbegin", "<ul class=\"item-list\">\n      <li class=\"item-name item-value\">".concat(item.name, "</li>\n      <li class=\"item-price item-value\"> $").concat(item.price, "</li>\n      <li class=\"item-vegetarian item-value\">Vegetarian: ").concat(item.vegetarian, "</li>\n      <li class=\"item-image\">\n        <img\n          class=\"item-image\"\n          src=\"").concat(item.img, "\"\n          alt=\"\"\n        />\n      </li>\n      <li class=\"item-in-stock item-value\">In Stock: ").concat(item.inStock, "</li>\n    </ul>"));
+    });
+  });
 };
 
 init();
@@ -268,7 +289,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34649" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41837" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

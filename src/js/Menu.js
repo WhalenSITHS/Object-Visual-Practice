@@ -66,5 +66,11 @@ const menu = [
 ];
 const vegetarianOptions = menu.filter((item) => item.vegetarian === true);
 const inStockItems = menu.filter((item) => item.inStock === true);
-
-export { vegetarianOptions, inStockItems, menu };
+const saleMenu = menu.map((item) => ({
+  name: item.name,
+  price: item.price / 2,
+  vegetarian: item.vegetarian,
+  img: item.img,
+  inStock: item.inStock,
+}));
+export { vegetarianOptions, inStockItems, menu, saleMenu };
