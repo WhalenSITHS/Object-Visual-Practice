@@ -69,6 +69,7 @@ const menu = [
 ];
 
 const init = function () {
+  // Do we need the const?
   const displayItems = menu.forEach((item) =>
     DOMSelectors.displayContainer.insertAdjacentHTML(
       "afterbegin",
