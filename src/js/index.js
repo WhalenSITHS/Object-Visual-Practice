@@ -102,7 +102,7 @@ const init = function () {
       normalDay();
       break;
     case 4:
-      saleDay();
+      normalDay();
       break;
     case 5:
       saleDay();
