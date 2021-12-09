@@ -47,7 +47,7 @@ const normalDay = function () {
     DOMSelectors.displayContainer.innerHTML = "";
     console.log("clear content works");
   });
-  DOMSelectors.vegetarianButton.addEventListener("click", function (e) {
+  DOMSelectors.vegetarianButton.addEventListener("click", function () {
     DOMSelectors.displayContainer.innerHTML = "";
     vegetarianOptions.forEach((item) => {
       DOMSelectors.displayContainer.insertAdjacentHTML(
